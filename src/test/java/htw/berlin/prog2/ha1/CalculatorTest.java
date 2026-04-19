@@ -108,30 +108,27 @@ class CalculatorTest {
     }
 
     @Test
-    @DisplayName("should show Error after negative root")
-    void testNegativeRoot() {
+    @DisplayName("should do nothing when pressing equals without prior operation")
+    void testEqualsWithoutOperation() {
         Calculator calc = new Calculator();
-        calc.pressNegativeKey();
-        calc.pressDigitKey(9);
-        calc.pressUnaryOperationKey("√");
+        calc.pressDigitKey(5);
+        calc.pressEqualsKey();
 
-        String expected = "Error";
+        String expected = "5";
         String actual = calc.readScreen();
 
         assertEquals(expected, actual);
     }
 
     @Test
-    @DisplayName("should show Error when division with 0")
-    void testZeroDivision() {
+    @DisplayName("should show Error when inverting zero")
+    void testOneOverZero() {
         Calculator calc = new Calculator();
-        calc.pressDigitKey(9);
-        calc.pressBinaryOperationKey("/");
         calc.pressDigitKey(0);
+        calc.pressUnaryOperationKey("1/x");
 
         String expected = "Error";
         String actual = calc.readScreen();
-
         assertEquals(expected, actual);
     }
 }
