@@ -69,6 +69,7 @@ public class Calculator {
      * Quadratwurzel, Prozent, Inversion, welche nur einen Operanden benötigen.
      * Beim Drücken der Taste wird direkt die Operation auf den aktuellen Zahlenwert angewendet und
      * der Bildschirminhalt mit dem Ergebnis aktualisiert.
+     * Wenn die Taste "1/X" auf eine Null angewendet wird, erscheint "Error" auf dem Screen
      * @param operation "√" für Quadratwurzel, "%" für Prozent, "1/x" für Inversion
      */
     public void pressUnaryOperationKey(String operation) {
@@ -81,7 +82,7 @@ public class Calculator {
             default -> throw new IllegalArgumentException();
         };
         screen = Double.toString(result);
-        if(screen.equals("NaN")) screen = "Error";
+        if(screen.equals("NaN") || screen.equals("Infinity")) screen = "Error";
         if(screen.contains(".") && screen.length() > 11) screen = screen.substring(0, 10);
 
     }
